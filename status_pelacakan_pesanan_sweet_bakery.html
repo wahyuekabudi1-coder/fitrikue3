@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Status &amp; Pelacakan Pesanan - Sweet Bakery</title>
+  <meta name="description" content="Lacak status persiapan, baking oven, dan jadwal pengiriman kue artisan Sweet Bakery Anda.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C62828',
+            'primary-dark': '#9B1B1B',
+            cream: '#FFF5E9',
+            'cream-light': '#FFFDFB',
+            'cream-card': '#FAF0E6',
+            chocolate: '#3B2925',
+            'chocolate-muted': '#705954',
+            border: '#EADFD9'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#FFFDFB] font-sans text-chocolate antialiased selection:bg-primary selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-[#FFFDFB]/95 backdrop-blur-md border-b border-border/80">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-8">
+      <a href="/" data-path="beranda" class="flex items-center gap-3 shrink-0">
+        <span class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-primary font-serif font-bold text-xl shadow-xs">S</span>
+        <span class="font-serif text-2xl font-bold tracking-tight text-chocolate hover:text-primary transition-colors">Sweet Bakery</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-chocolate-muted">
+        <a href="/" data-path="beranda" class="hover:text-chocolate transition-colors">Beranda</a>
+        <a href="/katalog-kue" data-path="katalog-kue" class="hover:text-chocolate transition-colors">Katalog Kue</a>
+        <a href="/formulir-pre-order" data-path="custom-wedding" class="hover:text-chocolate transition-colors">Custom Cake</a>
+        <a href="/status-pesanan" data-path="status-pesanan" class="text-primary font-semibold transition-colors">Lacak Pesanan</a>
+      </nav>
+
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="https://wa.me/6281234567890" target="_blank" class="text-xs font-semibold text-primary hover:underline flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">chat</span>
+          <span>Bantuan Chef</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title & Status Header -->
+  <section class="py-10 bg-cream/40 border-b border-border/60 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-xs font-semibold text-primary uppercase tracking-wider">Live Status Dapur</span>
+          <span class="text-xs text-chocolate-muted">·</span>
+          <span class="text-xs font-mono font-bold text-chocolate">#SB-2026-8942</span>
+        </div>
+        <h1 class="font-serif text-3xl font-semibold text-chocolate">Pesanan Sedang Dipersiapkan</h1>
+        <p class="text-sm text-chocolate-muted mt-1">
+          Dikonfirmasi untuk pengiriman <strong class="text-chocolate">Sabtu, 18 Oktober 2026 (13:00 – 16:00 WIB)</strong>.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-4 border border-border shadow-xs flex items-center gap-4">
+        <span class="w-12 h-12 rounded-xl bg-cream flex items-center justify-center text-primary text-xl">🚚</span>
+        <div>
+          <span class="text-[11px] font-bold text-chocolate-muted uppercase tracking-wider block">Metode Pengantaran</span>
+          <span class="text-sm font-bold text-chocolate block">Kurir Khusus Kue Berpendingin</span>
+          <span class="text-xs text-chocolate-muted">Jl. Cikajang No. 18, Kebayoran Baru</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Production Stage Timeline -->
+      <div class="lg:col-span-7 space-y-8">
+        
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-border/80 shadow-xs space-y-6">
+          <h2 class="font-serif text-xl font-semibold text-chocolate pb-3 border-b border-border/60">
+            Perjalanan Pesanan Anda
+          </h2>
+
+          <!-- Vertical Timeline Steps -->
+          <div class="space-y-8 pl-2">
+            
+            <!-- Step 1: Completed -->
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-cream text-primary flex items-center justify-center font-bold text-sm shrink-0 border border-primary/30">
+                ✓
+              </div>
+              <div class="space-y-1">
+                <span class="text-xs font-bold text-chocolate-muted uppercase tracking-wider block">Tahap 1 · Selesai</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate">Pembayaran DP 50% Terverifikasi</h3>
+                <p class="text-xs text-chocolate-muted leading-relaxed">
+                  Uang muka Rp 227.500 telah masuk. Slot oven dapur Senopati resmi terkunci untuk tanggal 18 Oktober 2026.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2: In Progress -->
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-xs">
+                2
+              </div>
+              <div class="space-y-1">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider block">Tahap 2 · Sedang Berjalan</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate">Alokasi Bahan &amp; Baking Sponge</h3>
+                <p class="text-xs text-chocolate-muted leading-relaxed">
+                  Bahan alami pistachio Sisilia dan mentega Prancis dipersiapkan. Sponge dipanggang pada rotasi oven pagi.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3: Upcoming -->
+            <div class="flex gap-4 items-start opacity-60">
+              <div class="w-8 h-8 rounded-full bg-cream border border-border text-chocolate-muted flex items-center justify-center font-bold text-sm shrink-0">
+                3
+              </div>
+              <div class="space-y-1">
+                <span class="text-xs font-bold text-chocolate-muted uppercase tracking-wider block">Tahap 3 · Terjadwal H-1</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate">Decorating &amp; Foto Konfirmasi Pelunasan</h3>
+                <p class="text-xs text-chocolate-muted leading-relaxed">
+                  Chef menghias kue dengan buah berry segar dan plakat cokelat. Foto hasil akhir akan dikirimkan ke WhatsApp Anda bersama tautan pelunasan.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4: Upcoming -->
+            <div class="flex gap-4 items-start opacity-60">
+              <div class="w-8 h-8 rounded-full bg-cream border border-border text-chocolate-muted flex items-center justify-center font-bold text-sm shrink-0">
+                4
+              </div>
+              <div class="space-y-1">
+                <span class="text-xs font-bold text-chocolate-muted uppercase tracking-wider block">Tahap 4 · Hari Pengiriman</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate">Pengantaran Mobil Berpendingin</h3>
+                <p class="text-xs text-chocolate-muted leading-relaxed">
+                  Kue dikemas dalam thermal box aman dan diantar langsung ke lokasi tujuan dalam slot waktu pilihan Anda.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Financial & Item Overview -->
+      <aside class="lg:col-span-5 sticky top-28 space-y-6">
+        
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-border/80 shadow-xs space-y-5">
+          <h2 class="font-serif text-lg font-semibold text-chocolate pb-3 border-b border-border/60">
+            Rincian Pesanan &amp; Finansial
+          </h2>
+
+          <!-- Cake item -->
+          <div class="flex gap-4 items-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX7fAc8ouzU3bsZdt5QKqKO6e8yKYt469NcG3sfJ5ynvsm9Ftv5Rjqj9t24wozcEJ1su0wLlgzRU4sFDmc7aVlyW5DekqWbB-jpT8qR2FSBBGrM6FSs6U3gOmx8ONz8nPvvqytPB7g3JRV0Mp0FPtmHaq8-TdMToOEd6NKwutYTQo1-iLbomavTRAAn9nbVthuQGZ609toLRxiN6f0HaPIkoeOis85q0AL8LLhfpinNcI_YjGzV60" alt="Cake" class="w-16 h-16 rounded-xl object-cover bg-cream-card shrink-0">
+            <div>
+              <h3 class="font-serif text-sm font-semibold text-chocolate">Raspberry Pistachio Layer Cake</h3>
+              <p class="text-xs text-chocolate-muted">Diameter 16 cm (1x)</p>
+              <p class="text-[11px] text-primary italic">"Happy 25th Birthday Amanda ♡"</p>
+            </div>
+          </div>
+
+          <!-- Financial summary -->
+          <div class="pt-4 border-t border-border/60 space-y-2 text-xs">
+            <div class="flex justify-between">
+              <span class="text-chocolate-muted">Total Nilai Pesanan:</span>
+              <span class="font-bold text-chocolate">Rp 455.000</span>
+            </div>
+            <div class="flex justify-between text-emerald-800 bg-emerald-50 p-2.5 rounded-lg font-medium">
+              <span>DP 50% (Sudah Dibayar):</span>
+              <span class="font-bold">✓ Rp 227.500 (Lunas)</span>
+            </div>
+            <div class="flex justify-between text-chocolate-muted p-2.5 rounded-lg border border-border">
+              <span>Sisa Pelunasan (H-1):</span>
+              <span class="font-bold text-chocolate">Rp 227.500</span>
+            </div>
+          </div>
+
+          <div class="pt-2 text-[11px] text-chocolate-muted leading-relaxed">
+            Link pelunasan otomatis dikirim ke WhatsApp Anda setelah proses dekorasi kue selesai dan terverifikasi chef.
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-chocolate text-[#FFFDFB] pt-16 pb-12 px-6 lg:px-12 border-t border-border/40 mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-white/60">
+      <div class="flex items-center gap-3">
+        <span class="font-serif text-lg font-bold text-cream">Sweet Bakery</span>
+        <span>·</span>
+        <span>Layanan Pelacakan Pesanan Artisan</span>
+      </div>
+      <p>© 2026 Sweet Bakery. Seluruh hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="/navigation.js"></script>
+</body>
+</html>

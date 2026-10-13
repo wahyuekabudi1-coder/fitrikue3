@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Sweet Bakery - Artisan &amp; Custom Cake Atelier</title>
+  <meta name="description" content="Kue artisan segar dibuat khusus untuk momen berharga Anda. Menggunakan mentega Prancis AOP dan buah musiman pilihan dengan sistem pre-order rapi.">
+  <meta property="og:title" content="Sweet Bakery - Artisan &amp; Custom Cake Atelier">
+  <meta property="og:description" content="Kue artisan segar dibuat khusus untuk momen berharga Anda.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C62828',
+            'primary-dark': '#9B1B1B',
+            cream: '#FFF5E9',
+            'cream-light': '#FFFDFB',
+            'cream-card': '#FAF0E6',
+            chocolate: '#3B2925',
+            'chocolate-muted': '#705954',
+            border: '#EADFD9'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#FFFDFB] font-sans text-chocolate antialiased selection:bg-primary selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <aside class="bg-cream border-b border-border text-center py-2 px-4 text-xs font-medium text-chocolate-muted">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+      <span class="text-primary">✨</span>
+      <span>Pre-Order Acara Spesial &amp; Weekend: Pesan min. H-2 | Pengiriman Khusus Kue Seluruh Jabodetabek</span>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar (Top Bar Contract) -->
+  <header class="sticky top-0 z-50 bg-[#FFFDFB]/95 backdrop-blur-md border-b border-border/80">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-8">
+      
+      <!-- Brand Logo -->
+      <a href="/" data-path="beranda" class="flex items-center gap-3 shrink-0">
+        <span class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-primary font-serif font-bold text-xl shadow-xs">S</span>
+        <span class="font-serif text-2xl font-bold tracking-tight text-chocolate hover:text-primary transition-colors">Sweet Bakery</span>
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-chocolate-muted">
+        <a href="/" data-path="beranda" class="text-primary font-semibold transition-colors">Beranda</a>
+        <a href="/katalog-kue" data-path="katalog-kue" class="hover:text-chocolate transition-colors">Katalog Kue</a>
+        <a href="/formulir-pre-order" data-path="custom-wedding" class="hover:text-chocolate transition-colors">Custom Cake</a>
+        <a href="/status-pesanan" data-path="status-pesanan" class="hover:text-chocolate transition-colors">Lacak Pesanan</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="/formulir-pre-order" data-path="keranjang-pre-order" aria-label="Keranjang" class="relative p-2.5 rounded-full hover:bg-cream text-chocolate transition-colors">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute top-1 right-1 w-4 h-4 bg-primary text-white rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
+        </a>
+        <a href="/katalog-kue" data-path="katalog-kue" class="hidden sm:inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all">
+          Pesan Sekarang
+        </a>
+        <a href="/admin" data-path="dashboard-kpi" title="Admin Atelier Kitchen" class="p-2 rounded-full hover:bg-cream text-chocolate-muted hover:text-chocolate transition-colors">
+          <span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION (Lega & Minimalis Premium) -->
+  <section class="py-16 lg:py-24 px-6 lg:px-12 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left Column: Copy & Primary CTA -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="inline-block text-xs font-semibold tracking-wider uppercase text-primary bg-cream px-3 py-1 rounded-md">
+          Artisan Patisserie &amp; Cake Atelier
+        </div>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-chocolate tracking-tight leading-[1.15]">
+          Kue Istimewa untuk Momen Berhargamu.
+        </h1>
+        <p class="text-base sm:text-lg text-chocolate-muted leading-relaxed max-w-xl">
+          Dibuat hangat dari mentega Prancis AOP dan buah berry segar. Setiap kue dipanggang khusus sesuai pesanan untuk rasa lembut dan berkelas.
+        </p>
+        <div class="pt-4 flex flex-wrap items-center gap-4">
+          <a href="/katalog-kue" data-path="katalog-kue" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold text-sm px-7 py-3.5 rounded-full shadow-sm hover:shadow-md transition-all">
+            <span>Pesan Sekarang</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+          <a href="https://wa.me/6281234567890?text=Halo%20Sweet%20Bakery,%20saya%20ingin%20konsultasi%20custom%20cake" target="_blank" class="inline-flex items-center gap-2 text-chocolate font-medium text-sm px-5 py-3.5 rounded-full border border-border hover:bg-cream transition-colors">
+            <span class="material-symbols-outlined text-[18px] text-primary">chat</span>
+            <span>Konsultasi WhatsApp</span>
+          </a>
+        </div>
+        <div class="pt-6 border-t border-border/80 flex items-center gap-8 text-xs text-chocolate-muted">
+          <div><strong class="text-chocolate font-semibold block text-sm">100% Halal</strong>Bahan Alami Pilihan</div>
+          <span class="text-border">|</span>
+          <div><strong class="text-chocolate font-semibold block text-sm">Fresh Baked</strong>Dipanggang di Hari H</div>
+          <span class="text-border">|</span>
+          <div><strong class="text-chocolate font-semibold block text-sm">Kurir Berpendingin</strong>Garansi Bentuk Utuh</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Single Hero Image -->
+      <div class="lg:col-span-6">
+        <div class="relative rounded-3xl overflow-hidden shadow-xl bg-cream-card aspect-[4/3] lg:aspect-square">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPTTUiNi6yCatzmP8quhQjWW4qoYzCw438bRREQoI0BIdc3SVZMjw7HXjHbX0S8RKAUcXIjtP7L_MWckvBJA2JFU-xXlHPnfqYBBlBOKYFDvn42AOdA8_tLYGjEQZaddkLhnu8rrMFFb-lltVLuEBGgy9uzgF1RkPIoP_G1TKXomX16tIJZRDYrMQ1VwcJ7JIfoLXorqZsn2jx_y8GD0Xcqj_gTnDSQaQWfX29ukF0NX5xtSla55k" alt="Artisan Raspberry Layer Celebration Cake" class="w-full h-full object-cover">
+          <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-border/60 flex items-center justify-between">
+            <div>
+              <span class="text-[11px] font-semibold text-primary uppercase tracking-wider block">Signature Cake</span>
+              <span class="font-serif font-semibold text-chocolate text-base">Raspberry Pistachio Entremet</span>
+            </div>
+            <a href="/detail-produk" data-path="detail-produk" class="text-xs font-semibold text-primary hover:underline">Lihat Detail →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. KATEGORI (Layout Sederhana) -->
+  <section class="py-16 bg-cream/50 border-y border-border/60 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">Pilihan Koleksi</span>
+          <h2 class="font-serif text-3xl font-semibold text-chocolate tracking-tight">Kategori Berdasarkan Momen</h2>
+        </div>
+        <a href="/katalog-kue" data-path="katalog-kue" class="text-sm font-semibold text-primary hover:text-chocolate transition-colors flex items-center gap-1">
+          <span>Semua Koleksi</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Category 1 -->
+        <a href="/katalog-kue" data-path="katalog-kue" class="group bg-white rounded-2xl overflow-hidden border border-border/80 p-3 hover:shadow-lg transition-all">
+          <div class="aspect-square rounded-xl overflow-hidden bg-cream-card mb-3">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa8LTfZ34RoO438MF-EHf8dbTSe2ookM_7VK8XdkIfmIK2lyMw-vNizygkssQ-Ls6Thhb26AVcC4b1HHeW1kFpDyA3Oro_qz2yJXLg5l6kA9HgeU5y04YcbMNVscjuaRo2FUo-edJX7DAcbTlYcY20_o_4Lf-_-BaIKOMnszglSv2f295M3U5Qv8G2hJjClMGulAe4b8JIb8pp6jVowXiBjmwcQaGurUgB_dMC2eaxFgeF9KCXelQ" alt="Birthday Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <h3 class="font-serif text-base font-semibold text-chocolate group-hover:text-primary transition-colors">Birthday &amp; Celebration</h3>
+          <p class="text-xs text-chocolate-muted mt-1">Kue ulang tahun tematik &amp; custom</p>
+        </a>
+
+        <!-- Category 2 -->
+        <a href="/formulir-pre-order" data-path="custom-wedding" class="group bg-white rounded-2xl overflow-hidden border border-border/80 p-3 hover:shadow-lg transition-all">
+          <div class="aspect-square rounded-xl overflow-hidden bg-cream-card mb-3">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5jvewi97GfOf_FvrcJCT2_nXn2fBpiVCzPfu8zAXONLlmIYAju9q5wvv9CYbmdHWjOkqgpmnrNeLIxZsJFQnOaVTCmwXbZqsN4T2wWwbCI-duc4wjn2i18ol_6x3Z5qaYCvGy0ZJMr-J5PSuqB7yDHJgVkZkFTP9BVpW3PC5crcN5bXhkJMRPwtS0Xp-QXmkLO-yzdXfyPn5ekr8fslRhf2yj7fM3mZreSr5UzZGfbpSlqlzCPow" alt="Wedding Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <h3 class="font-serif text-base font-semibold text-chocolate group-hover:text-primary transition-colors">Wedding &amp; Tier Cake</h3>
+          <p class="text-xs text-chocolate-muted mt-1">Kue pernikahan bertingkat mewah</p>
+        </a>
+
+        <!-- Category 3 -->
+        <a href="/katalog-kue" data-path="katalog-kue" class="group bg-white rounded-2xl overflow-hidden border border-border/80 p-3 hover:shadow-lg transition-all">
+          <div class="aspect-square rounded-xl overflow-hidden bg-cream-card mb-3">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NXlYpV_zlpJWRXsPj5rAJqDC0iK17TpyOyAiT1361ioW7a5IQ6C54-n3x5OBChXOJ1WdeimZVtMQKr4WDic8GzLyLLQxC8BrTTyezlDaSAkj4IVnVbwz757WjRkoYCfCk4H-Punkbte8TVj8ax4-kgT40tvkhrrjhhctEq7LGJj7G6NiyEdyBTJz4HDkJmU4i43eahuvSkSON8JgJOAddW96uHXLyy_LZ1aU2fKIrKO4vnFOLn4" alt="Tart & Dessert" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <h3 class="font-serif text-base font-semibold text-chocolate group-hover:text-primary transition-colors">Tart &amp; Dessert Box</h3>
+          <p class="text-xs text-chocolate-muted mt-1">Dark chocolate mousse &amp; fruit tart</p>
+        </a>
+
+        <!-- Category 4 -->
+        <a href="/katalog-kue" data-path="katalog-kue" class="group bg-white rounded-2xl overflow-hidden border border-border/80 p-3 hover:shadow-lg transition-all">
+          <div class="aspect-square rounded-xl overflow-hidden bg-cream-card mb-3">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN_akFcojK1QFDACgixVBY7lbGblKtQUQk5yMTroSPQzMsARfFGp-Pf5G601fhecM54ckBlTZAVEIelSgJRUZ9JMKZz0uBWH5pde57QwPZaoVG_9tjDlwvwLtx1YsjFfzKrDCtasjOdNldRVWpTodvvV7lpUc6HLGzRgiI1Y70M-64dAyZk2Ng5XQX2sI__30WCUaG8RNV_5-yCrR8-99jv5oyTRZmMPEi7Yan7cpcB8B2KJhYGXs" alt="Cookies & Hampers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <h3 class="font-serif text-base font-semibold text-chocolate group-hover:text-primary transition-colors">Cookies &amp; Hampers</h3>
+          <p class="text-xs text-chocolate-muted mt-1">Bingkisan premium &amp; seasonal gift</p>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. PRODUK UNGGULAN (Maksimal 4 kartu per baris desktop, 2 per baris mobile) -->
+  <section class="py-20 px-6 lg:px-12 max-w-7xl mx-auto">
+    
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      <div>
+        <span class="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">Kurasi Chef</span>
+        <h2 class="font-serif text-3xl font-semibold text-chocolate tracking-tight">Kue Paling Diminati Bulan Ini</h2>
+      </div>
+      <a href="/katalog-kue" data-path="katalog-kue" class="text-sm font-semibold text-primary hover:text-chocolate transition-colors flex items-center gap-1">
+        <span>Buka Katalog Lengkap</span>
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Card 1 -->
+      <article class="group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-square overflow-hidden bg-cream-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX7fAc8ouzU3bsZdt5QKqKO6e8yKYt469NcG3sfJ5ynvsm9Ftv5Rjqj9t24wozcEJ1su0wLlgzRU4sFDmc7aVlyW5DekqWbB-jpT8qR2FSBBGrM6FSs6U3gOmx8ONz8nPvvqytPB7g3JRV0Mp0FPtmHaq8-TdMToOEd6NKwutYTQo1-iLbomavTRAAn9nbVthuQGZ609toLRxiN6f0HaPIkoeOis85q0AL8LLhfpinNcI_YjGzV60" alt="Raspberry Pistachio Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md">PO H-2</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-xs font-medium text-chocolate-muted block">Signature Cake</span>
+            <h3 class="font-serif text-base sm:text-lg font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+              Raspberry Pistachio Layer
+            </h3>
+            <p class="text-xs sm:text-sm text-chocolate-muted mt-1 line-clamp-2">
+              Sponge pistachio aromatik gurih dengan selai raspberry tart dan vanilla mascarpone.
+            </p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+          <div>
+            <span class="text-[11px] text-chocolate-muted block">Harga</span>
+            <span class="text-sm sm:text-base font-bold text-primary">Rp 385.000</span>
+          </div>
+          <a href="/detail-produk" data-path="detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+            Pesan
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-square overflow-hidden bg-cream-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa8LTfZ34RoO438MF-EHf8dbTSe2ookM_7VK8XdkIfmIK2lyMw-vNizygkssQ-Ls6Thhb26AVcC4b1HHeW1kFpDyA3Oro_qz2yJXLg5l6kA9HgeU5y04YcbMNVscjuaRo2FUo-edJX7DAcbTlYcY20_o_4Lf-_-BaIKOMnszglSv2f295M3U5Qv8G2hJjClMGulAe4b8JIb8pp6jVowXiBjmwcQaGurUgB_dMC2eaxFgeF9KCXelQ" alt="Belgian Chocolate Mousse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md">PO H-1</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-xs font-medium text-chocolate-muted block">Chocolate Tart</span>
+            <h3 class="font-serif text-base sm:text-lg font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+              Belgian Dark Chocolate Mousse
+            </h3>
+            <p class="text-xs sm:text-sm text-chocolate-muted mt-1 line-clamp-2">
+              Tart cokelat Callebaut 70% intens dengan praline almond gurih dan ganache mengkilap.
+            </p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+          <div>
+            <span class="text-[11px] text-chocolate-muted block">Harga</span>
+            <span class="text-sm sm:text-base font-bold text-primary">Rp 345.000</span>
+          </div>
+          <a href="/detail-produk" data-path="detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+            Pesan
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-square overflow-hidden bg-cream-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NXlYpV_zlpJWRXsPj5rAJqDC0iK17TpyOyAiT1361ioW7a5IQ6C54-n3x5OBChXOJ1WdeimZVtMQKr4WDic8GzLyLLQxC8BrTTyezlDaSAkj4IVnVbwz757WjRkoYCfCk4H-Punkbte8TVj8ax4-kgT40tvkhrrjhhctEq7LGJj7G6NiyEdyBTJz4HDkJmU4i43eahuvSkSON8JgJOAddW96uHXLyy_LZ1aU2fKIrKO4vnFOLn4" alt="Earl Grey Tea Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md">PO H-2</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-xs font-medium text-chocolate-muted block">Chiffon &amp; Tea</span>
+            <h3 class="font-serif text-base sm:text-lg font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+              Earl Grey Berry Chiffon
+            </h3>
+            <p class="text-xs sm:text-sm text-chocolate-muted mt-1 line-clamp-2">
+              Infusi teh bergamot Twinings harum dengan krim lavender ringan dan compote stroberi.
+            </p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+          <div>
+            <span class="text-[11px] text-chocolate-muted block">Harga</span>
+            <span class="text-sm sm:text-base font-bold text-primary">Rp 295.000</span>
+          </div>
+          <a href="/detail-produk" data-path="detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+            Pesan
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-square overflow-hidden bg-cream-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlwUOW2SNw8uuvDyaTuBE1eWtA7iErvJG8YnY1pVLdYeFd1CM7hTE3KPpvWcPqrDJiw0XEQpTP-aaoexdKV9cr1AR4ODhZ5rbHXYUoRyZBHxzXnmrCkSPr-smns2Wtf4LrO7DnV_JihXsSKTs5yol2K9mhVxBXLCCQ1g5TPWxAffaJRyAu4fxSypci6y5x3efxUclowd2YMEzFPd-ZH1ZGrL4nd02iiK0Py5ZXmDz1JGzURPlLRac" alt="Basque Burnt Cheesecake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md">PO H-1</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <span class="text-xs font-medium text-chocolate-muted block">Artisan Cheesecake</span>
+            <h3 class="font-serif text-base sm:text-lg font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+              San Sebastián Burnt Cheesecake
+            </h3>
+            <p class="text-xs sm:text-sm text-chocolate-muted mt-1 line-clamp-2">
+              Krim keju Philadelphia lumer dengan lapisan karamel terpanggang khas Basque Spanyol.
+            </p>
+          </div>
+        </div>
+        <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+          <div>
+            <span class="text-[11px] text-chocolate-muted block">Harga</span>
+            <span class="text-sm sm:text-base font-bold text-primary">Rp 320.000</span>
+          </div>
+          <a href="/detail-produk" data-path="detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+            Pesan
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- 4. CUSTOM & WEDDING SECTION (Ringkas & Elegan) -->
+  <section class="py-20 bg-cream/40 border-t border-border/60 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 rounded-3xl overflow-hidden aspect-[4/3] bg-cream-card shadow-md">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5jvewi97GfOf_FvrcJCT2_nXn2fBpiVCzPfu8zAXONLlmIYAju9q5wvv9CYbmdHWjOkqgpmnrNeLIxZsJFQnOaVTCmwXbZqsN4T2wWwbCI-duc4wjn2i18ol_6x3Z5qaYCvGy0ZJMr-J5PSuqB7yDHJgVkZkFTP9BVpW3PC5crcN5bXhkJMRPwtS0Xp-QXmkLO-yzdXfyPn5ekr8fslRhf2yj7fM3mZreSr5UzZGfbpSlqlzCPow" alt="Custom Wedding Cake" class="w-full h-full object-cover">
+        </div>
+
+        <div class="lg:col-span-6 space-y-5">
+          <span class="text-xs font-semibold text-primary uppercase tracking-wider block">Custom &amp; Wedding Tier</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-chocolate tracking-tight">
+            Desain Kue Eksklusif untuk Hari Istimewa
+          </h2>
+          <p class="text-base text-chocolate-muted leading-relaxed">
+            Konsultasikan tema warna, tekstur, bunga edible, hingga sketsa bertingkat bersama tim pastry chef kami. Setiap detail disesuaikan dengan selera dan konsep perayaan Anda.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-4">
+            <a href="/formulir-pre-order" data-path="custom-wedding" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold text-sm px-6 py-3 rounded-full transition-all">
+              <span>Formulir Custom Pre-Order</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </a>
+            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center gap-2 text-chocolate font-medium text-sm px-5 py-3 rounded-full border border-border hover:bg-white transition-colors">
+              <span class="material-symbols-outlined text-[18px] text-primary">chat</span>
+              <span>Diskusi via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TESTIMONI (Ringkas) -->
+  <section class="py-20 px-6 lg:px-12 max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">Kepuasan Pelanggan</span>
+      <h2 class="font-serif text-3xl font-semibold text-chocolate tracking-tight">Ulasan Pembeli Terverifikasi</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-white p-6 rounded-2xl border border-border/80 shadow-xs space-y-3">
+        <div class="flex text-primary text-sm">★★★★★</div>
+        <p class="text-sm text-chocolate leading-relaxed">
+          "Raspberry Pistachio Cake-nya luar biasa! Tingkat manisnya pas, teksturnya sangat lembut dan segarnya buah berry terasa alami. Keluarga sangat suka."
+        </p>
+        <div class="pt-2 border-t border-border/60">
+          <strong class="font-semibold text-xs text-chocolate block">Clarissa Nadia</strong>
+          <span class="text-[11px] text-chocolate-muted">Birthday Pre-order · Jakarta Selatan</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-border/80 shadow-xs space-y-3">
+        <div class="flex text-primary text-sm">★★★★★</div>
+        <p class="text-sm text-chocolate leading-relaxed">
+          "Pesan wedding cake 3 tingkat custom. Mulai dari konsultasi, sketsa, hingga pengiriman dengan kurir berpendingin tepat waktu dan bentuknya sempurna."
+        </p>
+        <div class="pt-2 border-t border-border/60">
+          <strong class="font-semibold text-xs text-chocolate block">Kevin &amp; Amanda</strong>
+          <span class="text-[11px] text-chocolate-muted">Wedding Cake · Tangerang Selatan</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-border/80 shadow-xs space-y-3">
+        <div class="flex text-primary text-sm">★★★★★</div>
+        <p class="text-sm text-chocolate leading-relaxed">
+          "Sistem DP 50% dan pelacakan pesanannya sangat transparan. Kemasan rapi dan sudah termasuk pisau kue serta lilin emas yang elegan."
+        </p>
+        <div class="pt-2 border-t border-border/60">
+          <strong class="font-semibold text-xs text-chocolate block">dr. Fathia Wardani</strong>
+          <span class="text-[11px] text-chocolate-muted">Corporate Hampers · Jakarta Pusat</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-chocolate text-[#FFFDFB] pt-16 pb-12 px-6 lg:px-12 border-t border-border/40">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        
+        <div class="md:col-span-1 space-y-3">
+          <span class="font-serif text-2xl font-bold text-cream tracking-tight block">Sweet Bakery</span>
+          <p class="text-xs text-white/70 leading-relaxed">
+            Artisan Cake, Patisserie &amp; Custom Celebration Cakes. Dibuat hangat menggunakan bahan premium bersertifikasi Halal.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-serif text-sm font-semibold text-cream mb-3">Katalog Cepat</h4>
+          <ul class="space-y-2 text-xs text-white/70">
+            <li><a href="/katalog-kue" data-path="katalog-kue" class="hover:text-cream transition-colors">Birthday Cakes</a></li>
+            <li><a href="/formulir-pre-order" data-path="custom-wedding" class="hover:text-cream transition-colors">Wedding &amp; Custom Tier</a></li>
+            <li><a href="/katalog-kue" data-path="katalog-kue" class="hover:text-cream transition-colors">Dark Chocolate Mousse</a></li>
+            <li><a href="/katalog-kue" data-path="katalog-kue" class="hover:text-cream transition-colors">Cookies &amp; Hampers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-serif text-sm font-semibold text-cream mb-3">Atelier &amp; Dapur</h4>
+          <div class="space-y-2 text-xs text-white/70">
+            <p>Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan 12190</p>
+            <p>Buka Setiap Hari: 08.00 – 20.00 WIB</p>
+            <p>Slot Pengiriman: 09.00 – 18.00 WIB</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-serif text-sm font-semibold text-cream mb-3">Hubungi Kami</h4>
+          <div class="space-y-2 text-xs text-white/70">
+            <p><a href="https://wa.me/6281234567890" target="_blank" class="hover:text-cream transition-colors">+62 812-3456-7890 (WhatsApp)</a></p>
+            <p><a href="mailto:order@sweetbakery.id" class="hover:text-cream transition-colors">order@sweetbakery.id</a></p>
+            <p class="pt-2">
+              <a href="/admin" data-path="dashboard-kpi" class="inline-block text-[11px] text-cream/90 hover:text-white underline">
+                Akses Dapur &amp; Admin Atelier →
+              </a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 text-center text-xs text-white/50">
+        <p>© 2026 Sweet Bakery Indonesia. Seluruh hak cipta dilindungi undang-undang.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "Sweet Bakery",
+  "description": "Artisan cake atelier and pre-order management platform with customer storefront and administrative kitchen operations.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

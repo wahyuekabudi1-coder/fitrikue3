@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Katalog Kue Artisan - Sweet Bakery</title>
+  <meta name="description" content="Eksplorasi koleksi kue artisan, tart buah, brownies, dan cake pesanan khusus untuk ulang tahun dan pernikahan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C62828',
+            'primary-dark': '#9B1B1B',
+            cream: '#FFF5E9',
+            'cream-light': '#FFFDFB',
+            'cream-card': '#FAF0E6',
+            chocolate: '#3B2925',
+            'chocolate-muted': '#705954',
+            border: '#EADFD9'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#FFFDFB] font-sans text-chocolate antialiased selection:bg-primary selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-[#FFFDFB]/95 backdrop-blur-md border-b border-border/80">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-8">
+      <a href="/" data-path="beranda" class="flex items-center gap-3 shrink-0">
+        <span class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-primary font-serif font-bold text-xl shadow-xs">S</span>
+        <span class="font-serif text-2xl font-bold tracking-tight text-chocolate hover:text-primary transition-colors">Sweet Bakery</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-chocolate-muted">
+        <a href="/" data-path="beranda" class="hover:text-chocolate transition-colors">Beranda</a>
+        <a href="/katalog-kue" data-path="katalog-kue" class="text-primary font-semibold transition-colors">Katalog Kue</a>
+        <a href="/formulir-pre-order" data-path="custom-wedding" class="hover:text-chocolate transition-colors">Custom Cake</a>
+        <a href="/status-pesanan" data-path="status-pesanan" class="hover:text-chocolate transition-colors">Lacak Pesanan</a>
+      </nav>
+
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="/formulir-pre-order" data-path="keranjang-pre-order" aria-label="Keranjang" class="relative p-2.5 rounded-full hover:bg-cream text-chocolate transition-colors">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute top-1 right-1 w-4 h-4 bg-primary text-white rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
+        </a>
+        <a href="/admin" data-path="dashboard-kpi" title="Admin Atelier" class="p-2 rounded-full hover:bg-cream text-chocolate-muted hover:text-chocolate transition-colors">
+          <span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="py-12 bg-cream/40 border-b border-border/60 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-2xl space-y-2">
+        <span class="text-xs font-semibold text-primary uppercase tracking-wider block">Artisan Collection</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-chocolate tracking-tight">Katalog Kue &amp; Patisserie</h1>
+        <p class="text-sm sm:text-base text-chocolate-muted leading-relaxed">
+          Kue segar dipanggang khusus sesuai pesanan menggunakan bahan alami bersertifikasi Halal.
+        </p>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="relative w-full md:w-80">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-chocolate-muted text-[20px]">search</span>
+        <input id="productSearchInput" type="text" placeholder="Cari nama kue atau rasa..." class="w-full pl-10 pr-9 py-2.5 bg-white rounded-full border border-border text-sm text-chocolate placeholder:text-chocolate-muted/60 focus:outline-none focus:border-primary transition-colors">
+        <button id="clearSearchBtn" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-chocolate-muted hover:text-primary text-xs">✕</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Main Content -->
+  <main class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- Sticky Filter Sidebar -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-28 bg-white rounded-2xl p-6 border border-border/80 shadow-xs space-y-6">
+        
+        <div class="flex items-center justify-between pb-3 border-b border-border/60">
+          <span class="font-serif font-semibold text-base text-chocolate">Filter Kue</span>
+          <button id="resetFiltersDesktop" type="button" class="text-xs text-primary hover:underline">Reset</button>
+        </div>
+
+        <!-- Category Options -->
+        <div class="space-y-3">
+          <label class="text-xs font-bold uppercase tracking-wider text-chocolate-muted block">Kategori</label>
+          <div class="space-y-2 text-sm text-chocolate">
+            <label class="flex items-center justify-between cursor-pointer hover:text-primary">
+              <span class="flex items-center gap-2">
+                <input type="radio" name="categoryFilter" value="all" checked class="accent-primary">
+                <span>Semua Kue</span>
+              </span>
+              <span class="text-xs text-chocolate-muted">8</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer hover:text-primary">
+              <span class="flex items-center gap-2">
+                <input type="radio" name="categoryFilter" value="birthday" class="accent-primary">
+                <span>Birthday Cake</span>
+              </span>
+              <span class="text-xs text-chocolate-muted">3</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer hover:text-primary">
+              <span class="flex items-center gap-2">
+                <input type="radio" name="categoryFilter" value="tart-fruit" class="accent-primary">
+                <span>Tart &amp; Cheesecake</span>
+              </span>
+              <span class="text-xs text-chocolate-muted">3</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer hover:text-primary">
+              <span class="flex items-center gap-2">
+                <input type="radio" name="categoryFilter" value="wedding" class="accent-primary">
+                <span>Wedding Tier Cake</span>
+              </span>
+              <span class="text-xs text-chocolate-muted">1</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer hover:text-primary">
+              <span class="flex items-center gap-2">
+                <input type="radio" name="categoryFilter" value="brownies" class="accent-primary">
+                <span>Brownies &amp; Cookies</span>
+              </span>
+              <span class="text-xs text-chocolate-muted">2</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range Slider -->
+        <div class="space-y-3 pt-3 border-t border-border/60">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold uppercase tracking-wider text-chocolate-muted block">Batas Harga</label>
+            <span id="priceDisplay" class="text-xs font-bold text-primary">Maks. Rp 1.500.000</span>
+          </div>
+          <input id="priceSlider" type="range" min="150000" max="1500000" step="50000" value="1500000" class="w-full accent-primary cursor-pointer">
+          <div class="flex justify-between text-[11px] text-chocolate-muted">
+            <span>Rp 150rb</span>
+            <span id="priceMaxLabel">Rp 1.500.000</span>
+          </div>
+        </div>
+
+        <!-- Lead time filter -->
+        <div class="space-y-3 pt-3 border-t border-border/60">
+          <label class="text-xs font-bold uppercase tracking-wider text-chocolate-muted block">Waktu Pemesanan</label>
+          <div class="space-y-1.5 text-xs text-chocolate">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="leadTimeFilter" value="H-1" checked class="accent-primary rounded">
+              <span>Bisa H-1 (Cepat)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="leadTimeFilter" value="H-2" checked class="accent-primary rounded">
+              <span>Pre-Order Standar H-2</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="leadTimeFilter" value="H-3" checked class="accent-primary rounded">
+              <span>Tier Cake H-3</span>
+            </label>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Main Product Grid (3 per row desktop, 2 per row mobile) -->
+      <section class="lg:col-span-9 space-y-6">
+        
+        <!-- Controls Bar -->
+        <div class="flex items-center justify-between pb-4 border-b border-border/60">
+          <span id="productCountLabel" class="text-xs text-chocolate-muted font-medium">Menampilkan 8 produk kue artisan</span>
+          <div class="flex items-center gap-2">
+            <button id="viewGridBtn" type="button" title="Tampilan Grid" class="p-2 rounded-lg bg-cream text-primary transition-colors">
+              <span class="material-symbols-outlined text-[18px]">grid_view</span>
+            </button>
+            <button id="viewListBtn" type="button" title="Tampilan List" class="p-2 rounded-lg text-chocolate-muted hover:bg-cream transition-colors">
+              <span class="material-symbols-outlined text-[18px]">view_list</span>
+            </button>
+            <button id="mobileFilterOpenBtn" type="button" class="lg:hidden ml-2 flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border border-border bg-white text-chocolate font-semibold">
+              <span class="material-symbols-outlined text-[16px]">tune</span>
+              <span>Filter</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Cards Container -->
+        <div id="productGridContainer" class="grid grid-cols-2 md:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="birthday" data-price="385000" data-lead="H-2" data-name="Raspberry Pistachio Layer Cake">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX7fAc8ouzU3bsZdt5QKqKO6e8yKYt469NcG3sfJ5ynvsm9Ftv5Rjqj9t24wozcEJ1su0wLlgzRU4sFDmc7aVlyW5DekqWbB-jpT8qR2FSBBGrM6FSs6U3gOmx8ONz8nPvvqytPB7g3JRV0Mp0FPtmHaq8-TdMToOEd6NKwutYTQo1-iLbomavTRAAn9nbVthuQGZ609toLRxiN6f0HaPIkoeOis85q0AL8LLhfpinNcI_YjGzV60" alt="Raspberry Pistachio Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-2</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Birthday &amp; Signature</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Raspberry Pistachio Layer Cake
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Sponge pistachio gurih aromatik dengan selai raspberry segar dan mascarpone.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 385.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="tart-fruit" data-price="345000" data-lead="H-1" data-name="Belgian Dark Chocolate Mousse Tart">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa8LTfZ34RoO438MF-EHf8dbTSe2ookM_7VK8XdkIfmIK2lyMw-vNizygkssQ-Ls6Thhb26AVcC4b1HHeW1kFpDyA3Oro_qz2yJXLg5l6kA9HgeU5y04YcbMNVscjuaRo2FUo-edJX7DAcbTlYcY20_o_4Lf-_-BaIKOMnszglSv2f295M3U5Qv8G2hJjClMGulAe4b8JIb8pp6jVowXiBjmwcQaGurUgB_dMC2eaxFgeF9KCXelQ" alt="Belgian Dark Chocolate Mousse Tart" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-1</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Chocolate Tart</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Belgian Dark Chocolate Mousse
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Tart cokelat Callebaut 70% intens dengan lapisan praline almond renyah.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 345.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="birthday" data-price="295000" data-lead="H-2" data-name="Earl Grey Berry Chiffon">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NXlYpV_zlpJWRXsPj5rAJqDC0iK17TpyOyAiT1361ioW7a5IQ6C54-n3x5OBChXOJ1WdeimZVtMQKr4WDic8GzLyLLQxC8BrTTyezlDaSAkj4IVnVbwz757WjRkoYCfCk4H-Punkbte8TVj8ax4-kgT40tvkhrrjhhctEq7LGJj7G6NiyEdyBTJz4HDkJmU4i43eahuvSkSON8JgJOAddW96uHXLyy_LZ1aU2fKIrKO4vnFOLn4" alt="Earl Grey Berry Chiffon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-2</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Chiffon Cake</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Earl Grey Berry Chiffon
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Chiffon bergamot harum semerbak dengan krim lavender dan buah segar.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 295.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="tart-fruit" data-price="320000" data-lead="H-1" data-name="San Sebastian Burnt Cheesecake">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlwUOW2SNw8uuvDyaTuBE1eWtA7iErvJG8YnY1pVLdYeFd1CM7hTE3KPpvWcPqrDJiw0XEQpTP-aaoexdKV9cr1AR4ODhZ5rbHXYUoRyZBHxzXnmrCkSPr-smns2Wtf4LrO7DnV_JihXsSKTs5yol2K9mhVxBXLCCQ1g5TPWxAffaJRyAu4fxSypci6y5x3efxUclowd2YMEzFPd-ZH1ZGrL4nd02iiK0Py5ZXmDz1JGzURPlLRac" alt="Basque Burnt Cheesecake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-1</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Cheesecake</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  San Sebastián Burnt Cheesecake
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Cream cheese lumer dengan karamelisasi terpanggang otentik khas Spanyol.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 320.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="birthday" data-price="360000" data-lead="H-2" data-name="Parisian Strawberry Shortcake">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN_akFcojK1QFDACgixVBY7lbGblKtQUQk5yMTroSPQzMsARfFGp-Pf5G601fhecM54ckBlTZAVEIelSgJRUZ9JMKZz0uBWH5pde57QwPZaoVG_9tjDlwvwLtx1YsjFfzKrDCtasjOdNldRVWpTodvvV7lpUc6HLGzRgiI1Y70M-64dAyZk2Ng5XQX2sI__30WCUaG8RNV_5-yCrR8-99jv5oyTRZmMPEi7Yan7cpcB8B2KJhYGXs" alt="Parisian Strawberry Shortcake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-2</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Sponge &amp; Cream</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Parisian Strawberry Shortcake
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Sponge vanila Madagaskar selembut awan dengan potongan stroberi segar.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 360.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="wedding" data-price="1250000" data-lead="H-3" data-name="Royal Grand Wedding Tier Cake">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5jvewi97GfOf_FvrcJCT2_nXn2fBpiVCzPfu8zAXONLlmIYAju9q5wvv9CYbmdHWjOkqgpmnrNeLIxZsJFQnOaVTCmwXbZqsN4T2wWwbCI-duc4wjn2i18ol_6x3Z5qaYCvGy0ZJMr-J5PSuqB7yDHJgVkZkFTP9BVpW3PC5crcN5bXhkJMRPwtS0Xp-QXmkLO-yzdXfyPn5ekr8fslRhf2yj7fM3mZreSr5UzZGfbpSlqlzCPow" alt="Royal Grand Wedding Tier Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-3</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Wedding Cake</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Royal Grand Wedding Tier Cake
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Kue pernikahan bertingkat mewah dengan dekorasi edible flower dan emas 24k.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 1.250.000</span>
+              </div>
+              <a href="/formulir-pre-order" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Konsultasi
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 7 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="brownies" data-price="185000" data-lead="H-1" data-name="Fudgy Salted Caramel Brownies Box">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY1At4pzQxYXof361fgFzhWqvqmEMP7xg-fyLegtCreJ6WXnl8PP5tc5cCLC_bQ_ciFjpCkVzI5qLqiINnWSeShqpRTQAczd4JbyvEP1tJGKIszNrr6cIynwNOg8H9lu1ZB3DUEbRVQ7LBT0UXk1Vusf95boU9Xd7jU5HLAf0S2jp9oZ88AkkqqB2F8VR5-tAgbE-4dSTFI5yAso1X6ZUJT1iyQqBGe03mCKA7ynDN6zXdaC-4AH4" alt="Salted Caramel Brownies" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-1</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Brownies Box</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Salted Caramel Fudgy Brownies
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Brownies cokelat Belgia legit dengan saus karamel mentega gurih fleur de sel.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 185.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 8 -->
+          <article class="product-item group bg-white rounded-2xl overflow-hidden border border-border/80 hover:shadow-xl transition-all flex flex-col justify-between" data-category="brownies" data-price="165000" data-lead="H-1" data-name="Valrhona Double Chocolate Cookies Box">
+            <div>
+              <div class="relative aspect-square overflow-hidden bg-cream-card">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0BR_RLROjcKJsKQeLlW3FCehomN58Ef-GYW9BTXHFql6bOPCOJA8ySFr2oCL0J1rCUDYr883PU-fpP5bRrdfgMXq-LXub6i_MUpbc_mNYA7krMC419i5f5wrGhdkzV7KJuUNQTUPdsW3gkpSpcIwSYFNRkJ8KC2qVvJSAokE24UQDRtIVRzGyN8n_kQt4V3f8bP04kqvR8eNj8PC_xPkoZaSmO3TkfUeRf0-c0fDB99fHtW2jzDE" alt="Valrhona Chocolate Cookies" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <span class="absolute top-3 left-3 text-[11px] font-semibold text-chocolate bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded">PO H-1</span>
+              </div>
+              <div class="p-4 sm:p-5">
+                <span class="text-xs font-medium text-chocolate-muted block">Cookies &amp; Hampers</span>
+                <h3 class="font-serif text-base font-semibold text-chocolate mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                  Valrhona Double Choc Cookies
+                </h3>
+                <p class="text-xs text-chocolate-muted mt-1 line-clamp-2">
+                  Kukis renyah di luar, lembut di dalam dengan lelehan cokelat Valrhona premium.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 pt-0 border-t border-border/60 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-chocolate-muted block">Mulai</span>
+                <span class="text-sm font-bold text-primary">Rp 165.000</span>
+              </div>
+              <a href="/detail-produk" class="px-3.5 py-1.5 rounded-lg bg-cream hover:bg-primary text-chocolate hover:text-white text-xs font-semibold transition-colors">
+                Detail &amp; Pesan
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <div id="noProductsFound" class="hidden text-center py-16 bg-white rounded-2xl border border-border">
+          <p class="font-serif text-lg font-semibold text-chocolate">Tidak ada kue yang cocok dengan pencarian Anda</p>
+          <p class="text-xs text-chocolate-muted mt-1">Coba gunakan kata kunci lain atau reset filter Anda.</p>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Mobile Filter Modal -->
+  <div id="mobileFilterModal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-end">
+    <div class="bg-white w-full rounded-t-3xl p-6 max-h-[85vh] overflow-y-auto space-y-6">
+      <div class="flex items-center justify-between border-b border-border pb-3">
+        <span class="font-serif font-semibold text-lg text-chocolate">Filter Katalog</span>
+        <button id="mobileFilterCloseBtn" type="button" class="text-chocolate-muted text-sm font-semibold">Tutup</button>
+      </div>
+      <p class="text-xs text-chocolate-muted">Pilih preferensi kategori dan harga untuk melihat pilihan kue yang sesuai.</p>
+      <button id="mobileFilterApplyBtn" type="button" class="w-full py-3 bg-primary text-white font-semibold rounded-full text-sm">
+        Terapkan Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-chocolate text-[#FFFDFB] pt-16 pb-12 px-6 lg:px-12 border-t border-border/40 mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-white/60">
+      <div class="flex items-center gap-3">
+        <span class="font-serif text-lg font-bold text-cream">Sweet Bakery</span>
+        <span>·</span>
+        <span>Artisan Cake Atelier Jakarta Selatan</span>
+      </div>
+      <p>© 2026 Sweet Bakery. Seluruh hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Live Filter & Search Logic
+    const searchInput = document.getElementById('productSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const priceSlider = document.getElementById('priceSlider');
+    const priceDisplay = document.getElementById('priceDisplay');
+    const priceMaxLabel = document.getElementById('priceMaxLabel');
+    const categoryRadios = document.querySelectorAll('input[name="categoryFilter"]');
+    const leadCheckboxes = document.querySelectorAll('input[name="leadTimeFilter"]');
+    const productItems = document.querySelectorAll('.product-item');
+    const productCountLabel = document.getElementById('productCountLabel');
+    const noProductsFound = document.getElementById('noProductsFound');
+
+    function applyFilters() {
+      const query = (searchInput ? searchInput.value.trim().toLowerCase() : '');
+      const maxPrice = priceSlider ? Number(priceSlider.value) : 1500000;
+      
+      let selectedCat = 'all';
+      categoryRadios.forEach(r => { if (r.checked) selectedCat = r.value; });
+
+      const allowedLeads = Array.from(leadCheckboxes).filter(c => c.checked).map(c => c.value);
+
+      let visibleCount = 0;
+      productItems.forEach(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        const cat = item.getAttribute('data-category') || '';
+        const price = Number(item.getAttribute('data-price') || 0);
+        const lead = item.getAttribute('data-lead') || '';
+
+        const matchesQuery = !query || name.includes(query);
+        const matchesCat = (selectedCat === 'all' || cat.includes(selectedCat));
+        const matchesPrice = price <= maxPrice;
+        const matchesLead = allowedLeads.length === 0 || allowedLeads.includes(lead);
+
+        if (matchesQuery && matchesCat && matchesPrice && matchesLead) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (productCountLabel) {
+        productCountLabel.textContent = `Menampilkan ${visibleCount} produk kue artisan`;
+      }
+      if (noProductsFound) {
+        if (visibleCount === 0) noProductsFound.classList.remove('hidden');
+        else noProductsFound.classList.add('hidden');
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        if (clearBtn) clearBtn.classList.toggle('hidden', searchInput.value.length === 0);
+        applyFilters();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearBtn.classList.add('hidden');
+        applyFilters();
+      });
+    }
+
+    if (priceSlider) {
+      priceSlider.addEventListener('input', (e) => {
+        const val = Number(e.target.value);
+        const formatted = 'Rp ' + val.toLocaleString('id-ID');
+        if (priceDisplay) priceDisplay.textContent = 'Maks. ' + formatted;
+        if (priceMaxLabel) priceMaxLabel.textContent = formatted;
+        applyFilters();
+      });
+    }
+
+    categoryRadios.forEach(r => r.addEventListener('change', applyFilters));
+    leadCheckboxes.forEach(c => c.addEventListener('change', applyFilters));
+
+    const resetDesktop = document.getElementById('resetFiltersDesktop');
+    if (resetDesktop) {
+      resetDesktop.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        if (clearBtn) clearBtn.classList.add('hidden');
+        if (priceSlider) {
+          priceSlider.value = 1500000;
+          if (priceDisplay) priceDisplay.textContent = 'Maks. Rp 1.500.000';
+          if (priceMaxLabel) priceMaxLabel.textContent = 'Rp 1.500.000';
+        }
+        categoryRadios.forEach(r => { if (r.value === 'all') r.checked = true; });
+        leadCheckboxes.forEach(c => c.checked = true);
+        applyFilters();
+      });
+    }
+
+    // Grid / List toggle
+    const viewGridBtn = document.getElementById('viewGridBtn');
+    const viewListBtn = document.getElementById('viewListBtn');
+    const container = document.getElementById('productGridContainer');
+    if (viewGridBtn && viewListBtn && container) {
+      viewListBtn.addEventListener('click', () => {
+        viewListBtn.classList.add('bg-cream', 'text-primary');
+        viewListBtn.classList.remove('text-chocolate-muted');
+        viewGridBtn.classList.remove('bg-cream', 'text-primary');
+        viewGridBtn.classList.add('text-chocolate-muted');
+        container.classList.remove('md:grid-cols-3');
+        container.classList.add('grid-cols-1');
+      });
+      viewGridBtn.addEventListener('click', () => {
+        viewGridBtn.classList.add('bg-cream', 'text-primary');
+        viewGridBtn.classList.remove('text-chocolate-muted');
+        viewListBtn.classList.remove('bg-cream', 'text-primary');
+        viewListBtn.classList.add('text-chocolate-muted');
+        container.classList.remove('grid-cols-1');
+        container.classList.add('grid-cols-2', 'md:grid-cols-3');
+      });
+    }
+
+    // Mobile filter modal toggle
+    const mModal = document.getElementById('mobileFilterModal');
+    const mOpen = document.getElementById('mobileFilterOpenBtn');
+    const mClose = document.getElementById('mobileFilterCloseBtn');
+    const mApply = document.getElementById('mobileFilterApplyBtn');
+    if (mModal && mOpen && mClose) {
+      mOpen.addEventListener('click', () => mModal.classList.remove('hidden'));
+      mClose.addEventListener('click', () => mModal.classList.add('hidden'));
+      if (mApply) mApply.addEventListener('click', () => {
+        mModal.classList.add('hidden');
+        applyFilters();
+      });
+    }
+  </script>
+
+  <script src="/navigation.js"></script>
+</body>
+</html>

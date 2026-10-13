@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Raspberry Pistachio Layer Cake - Sweet Bakery</title>
+  <meta name="description" content="Kue artisan lapis sponge pistachio Sisilia dan selai raspberry segar dengan krim mascarpone lembut. Pre-order min. H-2.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C62828',
+            'primary-dark': '#9B1B1B',
+            cream: '#FFF5E9',
+            'cream-light': '#FFFDFB',
+            'cream-card': '#FAF0E6',
+            chocolate: '#3B2925',
+            'chocolate-muted': '#705954',
+            border: '#EADFD9'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#FFFDFB] font-sans text-chocolate antialiased selection:bg-primary selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-[#FFFDFB]/95 backdrop-blur-md border-b border-border/80">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-8">
+      <a href="/" data-path="beranda" class="flex items-center gap-3 shrink-0">
+        <span class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-primary font-serif font-bold text-xl shadow-xs">S</span>
+        <span class="font-serif text-2xl font-bold tracking-tight text-chocolate hover:text-primary transition-colors">Sweet Bakery</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-chocolate-muted">
+        <a href="/" data-path="beranda" class="hover:text-chocolate transition-colors">Beranda</a>
+        <a href="/katalog-kue" data-path="katalog-kue" class="text-primary font-semibold transition-colors">Katalog Kue</a>
+        <a href="/formulir-pre-order" data-path="custom-wedding" class="hover:text-chocolate transition-colors">Custom Cake</a>
+        <a href="/status-pesanan" data-path="status-pesanan" class="hover:text-chocolate transition-colors">Lacak Pesanan</a>
+      </nav>
+
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="/formulir-pre-order" data-path="keranjang-pre-order" aria-label="Keranjang" class="relative p-2.5 rounded-full hover:bg-cream text-chocolate transition-colors">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute top-1 right-1 w-4 h-4 bg-primary text-white rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
+        </a>
+        <a href="/admin" data-path="dashboard-kpi" title="Admin Atelier" class="p-2 rounded-full hover:bg-cream text-chocolate-muted hover:text-chocolate transition-colors">
+          <span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="border-b border-border/60 py-3 px-6 lg:px-12 text-xs text-chocolate-muted">
+    <div class="max-w-7xl mx-auto flex items-center gap-2">
+      <a href="/" data-path="beranda" class="hover:text-chocolate">Beranda</a>
+      <span>/</span>
+      <a href="/katalog-kue" data-path="katalog-kue" class="hover:text-chocolate">Katalog</a>
+      <span>/</span>
+      <span class="text-chocolate font-medium">Raspberry Pistachio Layer Cake</span>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toastNotification" class="hidden fixed top-24 right-6 z-50 bg-white border border-border rounded-xl shadow-xl p-4 flex items-center gap-3 transition-all">
+    <span class="w-8 h-8 rounded-full bg-cream text-primary flex items-center justify-center font-bold text-sm">✓</span>
+    <div>
+      <p class="text-xs font-bold text-chocolate" id="toastMessage">Pesanan berhasil ditambahkan ke keranjang.</p>
+      <a href="/formulir-pre-order" class="text-[11px] text-primary font-semibold hover:underline">Buka Formulir Pre-Order →</a>
+    </div>
+  </div>
+
+  <!-- Product Detail Section -->
+  <main class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Left Column: Gallery (Sticky) -->
+      <div class="lg:col-span-6 lg:sticky lg:top-28 space-y-4">
+        <div class="relative aspect-square rounded-3xl overflow-hidden bg-cream-card shadow-lg border border-border/80">
+          <img id="main-product-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX7fAc8ouzU3bsZdt5QKqKO6e8yKYt469NcG3sfJ5ynvsm9Ftv5Rjqj9t24wozcEJ1su0wLlgzRU4sFDmc7aVlyW5DekqWbB-jpT8qR2FSBBGrM6FSs6U3gOmx8ONz8nPvvqytPB7g3JRV0Mp0FPtmHaq8-TdMToOEd6NKwutYTQo1-iLbomavTRAAn9nbVthuQGZ609toLRxiN6f0HaPIkoeOis85q0AL8LLhfpinNcI_YjGzV60" alt="Raspberry Pistachio Layer Cake" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-xs font-semibold text-chocolate px-3 py-1 rounded-md shadow-xs">
+            PO Min. H-2
+          </span>
+        </div>
+
+        <!-- Thumbnails -->
+        <div id="thumb-strip" class="grid grid-cols-4 gap-3">
+          <button type="button" onclick="switchImage(this)" class="thumb-btn aspect-square rounded-xl overflow-hidden border-2 border-primary transition-all">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX7fAc8ouzU3bsZdt5QKqKO6e8yKYt469NcG3sfJ5ynvsm9Ftv5Rjqj9t24wozcEJ1su0wLlgzRU4sFDmc7aVlyW5DekqWbB-jpT8qR2FSBBGrM6FSs6U3gOmx8ONz8nPvvqytPB7g3JRV0Mp0FPtmHaq8-TdMToOEd6NKwutYTQo1-iLbomavTRAAn9nbVthuQGZ609toLRxiN6f0HaPIkoeOis85q0AL8LLhfpinNcI_YjGzV60" alt="View 1" class="w-full h-full object-cover">
+          </button>
+          <button type="button" onclick="switchImage(this)" class="thumb-btn aspect-square rounded-xl overflow-hidden border border-border opacity-70 hover:opacity-100 transition-all">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN_akFcojK1QFDACgixVBY7lbGblKtQUQk5yMTroSPQzMsARfFGp-Pf5G601fhecM54ckBlTZAVEIelSgJRUZ9JMKZz0uBWH5pde57QwPZaoVG_9tjDlwvwLtx1YsjFfzKrDCtasjOdNldRVWpTodvvV7lpUc6HLGzRgiI1Y70M-64dAyZk2Ng5XQX2sI__30WCUaG8RNV_5-yCrR8-99jv5oyTRZmMPEi7Yan7cpcB8B2KJhYGXs" alt="View 2" class="w-full h-full object-cover">
+          </button>
+          <button type="button" onclick="switchImage(this)" class="thumb-btn aspect-square rounded-xl overflow-hidden border border-border opacity-70 hover:opacity-100 transition-all">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY1At4pzQxYXof361fgFzhWqvqmEMP7xg-fyLegtCreJ6WXnl8PP5tc5cCLC_bQ_ciFjpCkVzI5qLqiINnWSeShqpRTQAczd4JbyvEP1tJGKIszNrr6cIynwNOg8H9lu1ZB3DUEbRVQ7LBT0UXk1Vusf95boU9Xd7jU5HLAf0S2jp9oZ88AkkqqB2F8VR5-tAgbE-4dSTFI5yAso1X6ZUJT1iyQqBGe03mCKA7ynDN6zXdaC-4AH4" alt="View 3" class="w-full h-full object-cover">
+          </button>
+          <button type="button" onclick="switchImage(this)" class="thumb-btn aspect-square rounded-xl overflow-hidden border border-border opacity-70 hover:opacity-100 transition-all">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0BR_RLROjcKJsKQeLlW3FCehomN58Ef-GYW9BTXHFql6bOPCOJA8ySFr2oCL0J1rCUDYr883PU-fpP5bRrdfgMXq-LXub6i_MUpbc_mNYA7krMC419i5f5wrGhdkzV7KJuUNQTUPdsW3gkpSpcIwSYFNRkJ8KC2qVvJSAokE24UQDRtIVRzGyN8n_kQt4V3f8bP04kqvR8eNj8PC_xPkoZaSmO3TkfUeRf0-c0fDB99fHtW2jzDE" alt="View 4" class="w-full h-full object-cover">
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Product Configurator & Purchasing Module -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div>
+          <span class="text-xs uppercase tracking-wider text-chocolate-muted font-medium">Koleksi Signature · Halal Certified</span>
+          <h1 class="font-serif text-3xl sm:text-4xl font-semibold text-chocolate tracking-tight mt-1">
+            Raspberry Pistachio Layer Cake
+          </h1>
+          <p class="text-sm text-chocolate-muted mt-2 leading-relaxed">
+            Perpaduan sponge pistachio gurih khas Sisilia dengan selai raspberry segar asam-manis dan vanilla mascarpone cream yang lembut lumer di lidah.
+          </p>
+        </div>
+
+        <!-- Price & DP 50% Banner -->
+        <div class="bg-cream/50 rounded-2xl p-5 border border-border/80 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-chocolate-muted block">Total Harga</span>
+            <span id="display-total-price" class="text-2xl font-bold text-primary font-sans">Rp 395.000</span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-chocolate-muted block">Cukup Bayar DP 50%</span>
+            <span id="display-dp-val" class="text-base font-bold text-chocolate font-sans">Rp 197.500</span>
+          </div>
+        </div>
+
+        <!-- 1. Diameter Ukuran -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <label class="font-semibold text-chocolate uppercase tracking-wider">1. Pilih Ukuran Kue</label>
+            <span id="portion-guide" class="text-chocolate-muted">Rekomendasi 6–8 Porsi</span>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <label class="cursor-pointer">
+              <input type="radio" name="cake_size" value="16" data-price="395000" data-portions="6-8 Porsi" checked class="peer sr-only" onchange="calculateCakeTotal()">
+              <div class="p-3.5 rounded-xl border border-border peer-checked:border-primary peer-checked:bg-cream text-center transition-all">
+                <span class="block text-sm font-bold text-chocolate">Ø 16 cm</span>
+                <span class="block text-xs text-chocolate-muted mt-0.5">Rp 395.000</span>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="cake_size" value="20" data-price="540000" data-portions="10-12 Porsi" class="peer sr-only" onchange="calculateCakeTotal()">
+              <div class="p-3.5 rounded-xl border border-border peer-checked:border-primary peer-checked:bg-cream text-center transition-all">
+                <span class="block text-sm font-bold text-chocolate">Ø 20 cm</span>
+                <span class="block text-xs text-chocolate-muted mt-0.5">Rp 540.000</span>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="cake_size" value="24" data-price="690000" data-portions="16-20 Porsi" class="peer sr-only" onchange="calculateCakeTotal()">
+              <div class="p-3.5 rounded-xl border border-border peer-checked:border-primary peer-checked:bg-cream text-center transition-all">
+                <span class="block text-sm font-bold text-chocolate">Ø 24 cm</span>
+                <span class="block text-xs text-chocolate-muted mt-0.5">Rp 690.000</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Tanggal & Jam Pengiriman -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label for="po-date-input" class="text-xs font-semibold text-chocolate uppercase tracking-wider block">2. Tanggal Acara (Min. H-2)</label>
+            <input id="po-date-input" type="date" class="w-full p-3 rounded-xl border border-border text-sm text-chocolate bg-white focus:outline-none focus:border-primary">
+          </div>
+          <div class="space-y-1.5">
+            <label for="po-time-slot" class="text-xs font-semibold text-chocolate uppercase tracking-wider block">Slot Waktu Tiba</label>
+            <select id="po-time-slot" class="w-full p-3 rounded-xl border border-border text-sm text-chocolate bg-white focus:outline-none focus:border-primary cursor-pointer">
+              <option value="pagi">Pagi (09:00 – 12:00 WIB)</option>
+              <option value="siang" selected>Siang (13:00 – 16:00 WIB)</option>
+              <option value="sore">Sore (16:00 – 19:00 WIB)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3. Tulisan Ucapan Cokelat -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-center text-xs">
+            <label for="cake-message-input" class="font-semibold text-chocolate uppercase tracking-wider">3. Tulisan di Plakat Cokelat (Gratis)</label>
+            <span id="char-counter" class="text-chocolate-muted">0 / 30 Karakter</span>
+          </div>
+          <input id="cake-message-input" type="text" maxlength="30" placeholder="Contoh: Happy 25th Birthday Amanda ♡" oninput="updateCharCount(this)" class="w-full p-3 rounded-xl border border-border text-sm text-chocolate bg-white focus:outline-none focus:border-primary">
+        </div>
+
+        <!-- 4. Jumlah & CTA Pre-Order -->
+        <div class="pt-2 flex items-center gap-4">
+          <div class="flex items-center border border-border rounded-xl bg-white p-1">
+            <button type="button" onclick="changeQuantity(-1)" class="w-9 h-9 flex items-center justify-center text-chocolate hover:text-primary font-bold text-base">－</button>
+            <span id="quantity-display" class="w-8 text-center text-sm font-bold text-chocolate">1</span>
+            <button type="button" onclick="changeQuantity(1)" class="w-9 h-9 flex items-center justify-center text-chocolate hover:text-primary font-bold text-base">＋</button>
+          </div>
+          <button type="button" onclick="proceedToPreorder()" class="flex-1 py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold text-sm rounded-xl shadow-xs hover:shadow-md transition-all">
+            Pesan Pre-Order Sekarang
+          </button>
+        </div>
+
+        <!-- Rincian Biaya Ringkas -->
+        <div class="text-xs text-chocolate-muted space-y-1.5 pt-4 border-t border-border/60">
+          <div class="flex justify-between">
+            <span>Subtotal Produk:</span>
+            <span id="summary-subtotal" class="font-semibold text-chocolate">Rp 395.000</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Uang Muka (DP 50% Sekarang):</span>
+            <span id="summary-dp" class="font-semibold text-primary">Rp 197.500</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Sisa Pelunasan (Dibayar H-1 saat kue selesai):</span>
+            <span id="summary-balance" class="font-semibold text-chocolate">Rp 197.500</span>
+          </div>
+        </div>
+
+        <!-- Accordion Detail (Teknis Panjang yang Dapat Dibuka) -->
+        <div class="pt-6 border-t border-border/80 space-y-3">
+          
+          <details class="group bg-white rounded-xl border border-border/80 p-4 transition-all">
+            <summary class="font-serif font-semibold text-sm text-chocolate cursor-pointer flex justify-between items-center list-none">
+              <span>Bahan Baku &amp; Sertifikasi Halal</span>
+              <span class="text-primary group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="text-xs text-chocolate-muted pt-3 leading-relaxed border-t border-border/40 mt-3 space-y-1.5">
+              <p>• Menggunakan mentega Prancis AOP Elle &amp; Vire asli tanpa campuran shortening.</p>
+              <p>• 100% Halal Certified: Tanpa rum, mirin, atau gelatin hewani non-halal.</p>
+              <p>• Kacang pistachio Sisilia murni tanpa perisa buatan atau pewarna sintetik.</p>
+            </div>
+          </details>
+
+          <details class="group bg-white rounded-xl border border-border/80 p-4 transition-all">
+            <summary class="font-serif font-semibold text-sm text-chocolate cursor-pointer flex justify-between items-center list-none">
+              <span>Petunjuk Penyimpanan &amp; Daya Tahan</span>
+              <summary-icon class="text-primary group-open:rotate-180 transition-transform">▼</summary-icon>
+            </summary>
+            <div class="text-xs text-chocolate-muted pt-3 leading-relaxed border-t border-border/40 mt-3 space-y-1.5">
+              <p>• Simpan di chiller suhu 2°C – 5°C. Konsumsi terbaik dalam 3 hari sejak diterima.</p>
+              <p>• Sajikan dalam kondisi dingin untuk rasa cream mascarpone yang optimal.</p>
+              <p>• Paket sudah termasuk box tebal bersegel, thermal wrap, pisau kue, dan lilin.</p>
+            </div>
+          </details>
+
+          <details class="group bg-white rounded-xl border border-border/80 p-4 transition-all">
+            <summary class="font-serif font-semibold text-sm text-chocolate cursor-pointer flex justify-between items-center list-none">
+              <span>Ketentuan DP &amp; Pengiriman Khusus</span>
+              <summary-icon class="text-primary group-open:rotate-180 transition-transform">▼</summary-icon>
+            </summary>
+            <div class="text-xs text-chocolate-muted pt-3 leading-relaxed border-t border-border/40 mt-3 space-y-1.5">
+              <p>• DP 50% mengunci slot oven atelier pada tanggal acara Anda.</p>
+              <p>• Pelunasan dilakukan H-1 setelah tim mengirimkan foto kue yang selesai didekorasi.</p>
+              <p>• Pengiriman menggunakan mobil kurir berpendingin khusus cake.</p>
+            </div>
+          </details>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-chocolate text-[#FFFDFB] pt-16 pb-12 px-6 lg:px-12 border-t border-border/40 mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-white/60">
+      <div class="flex items-center gap-3">
+        <span class="font-serif text-lg font-bold text-cream">Sweet Bakery</span>
+        <span>·</span>
+        <span>Artisan Cake Atelier Jakarta Selatan</span>
+      </div>
+      <p>© 2026 Sweet Bakery. Seluruh hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script>
+    let currentQty = 1;
+
+    (function initDateMin() {
+      const datePicker = document.getElementById('po-date-input');
+      if (datePicker) {
+        const today = new Date();
+        const minDate = new Date(today);
+        minDate.setDate(today.getDate() + 2); // Min H-2
+        const yyyy = minDate.getFullYear();
+        const mm = String(minDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(minDate.getDate()).padStart(2, '0');
+        datePicker.min = `${yyyy}-${mm}-${dd}`;
+        datePicker.value = `${yyyy}-${mm}-${dd}`;
+      }
+    })();
+
+    function switchImage(buttonElement) {
+      document.querySelectorAll('#thumb-strip .thumb-btn').forEach(btn => {
+        btn.classList.remove('border-primary');
+        btn.classList.add('border-border', 'opacity-70');
+      });
+      buttonElement.classList.add('border-primary');
+      buttonElement.classList.remove('border-border', 'opacity-70');
+      
+      const thumbImg = buttonElement.querySelector('img');
+      const mainImg = document.getElementById('main-product-img');
+      if (thumbImg && mainImg) {
+        mainImg.src = thumbImg.src;
+      }
+    }
+
+    function calculateCakeTotal() {
+      const sizeRadio = document.querySelector('input[name="cake_size"]:checked');
+      const basePrice = sizeRadio ? parseInt(sizeRadio.getAttribute('data-price'), 10) : 395000;
+      const portions = sizeRadio ? sizeRadio.getAttribute('data-portions') : '6-8 Porsi';
+
+      const portionEl = document.getElementById('portion-guide');
+      if (portionEl) portionEl.textContent = 'Rekomendasi ' + portions;
+
+      const grandTotal = basePrice * currentQty;
+      const dpTotal = Math.round(grandTotal * 0.5);
+      const balanceTotal = grandTotal - dpTotal;
+
+      const formatRp = (num) => 'Rp ' + num.toLocaleString('id-ID');
+
+      document.getElementById('display-total-price').textContent = formatRp(grandTotal);
+      document.getElementById('display-dp-val').textContent = formatRp(dpTotal);
+      document.getElementById('summary-subtotal').textContent = formatRp(grandTotal);
+      document.getElementById('summary-dp').textContent = formatRp(dpTotal);
+      document.getElementById('summary-balance').textContent = formatRp(balanceTotal);
+    }
+
+    function changeQuantity(delta) {
+      currentQty += delta;
+      if (currentQty < 1) currentQty = 1;
+      if (currentQty > 10) currentQty = 10;
+      document.getElementById('quantity-display').textContent = currentQty;
+      calculateCakeTotal();
+    }
+
+    function updateCharCount(input) {
+      const counter = document.getElementById('char-counter');
+      if (counter) counter.textContent = `${input.value.length} / 30 Karakter`;
+    }
+
+    function proceedToPreorder() {
+      const sizeRadio = document.querySelector('input[name="cake_size"]:checked');
+      const sizeVal = sizeRadio ? sizeRadio.value : '16';
+      const dateVal = document.getElementById('po-date-input').value;
+      
+      const toast = document.getElementById('toastNotification');
+      const msg = document.getElementById('toastMessage');
+      if (toast && msg) {
+        msg.textContent = `Raspberry Pistachio Cake (Ø ${sizeVal}cm) untuk ${dateVal} siap di checkout.`;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 5000);
+      }
+
+      const cartBadge = document.querySelector('header a[data-path="keranjang-pre-order"] span:last-child');
+      if (cartBadge) {
+        let current = parseInt(cartBadge.textContent, 10) || 0;
+        cartBadge.textContent = current + currentQty;
+      }
+
+      // Smoothly navigate to pre-order form after brief moment
+      setTimeout(() => {
+        window.location.href = '/formulir-pre-order';
+      }, 900);
+    }
+
+    calculateCakeTotal();
+  </script>
+
+  <script src="/navigation.js"></script>
+</body>
+</html>
